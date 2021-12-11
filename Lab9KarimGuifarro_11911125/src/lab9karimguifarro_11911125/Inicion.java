@@ -59,13 +59,13 @@ public class Inicion extends javax.swing.JFrame {
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jLabel18 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        pnom = new javax.swing.JTextField();
         jLabel19 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        pus = new javax.swing.JTextField();
         jLabel20 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        ped = new javax.swing.JTextField();
         jLabel21 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
+        pcon = new javax.swing.JTextField();
         Admin = new javax.swing.JFrame();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -217,6 +217,7 @@ public class Inicion extends javax.swing.JFrame {
         );
 
         Personal.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        Personal.setMinimumSize(new java.awt.Dimension(600, 450));
         Personal.addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
                 PersonalComponentShown(evt);
@@ -239,6 +240,12 @@ public class Inicion extends javax.swing.JFrame {
 
         jLabel20.setText("Edad:");
 
+        ped.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pedActionPerformed(evt);
+            }
+        });
+
         jLabel21.setText("Contraseña:");
 
         javax.swing.GroupLayout PersonalLayout = new javax.swing.GroupLayout(Personal.getContentPane());
@@ -259,13 +266,13 @@ public class Inicion extends javax.swing.JFrame {
                         .addGap(30, 30, 30)
                         .addGroup(PersonalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel18)
-                            .addComponent(jTextField2)
+                            .addComponent(pnom)
                             .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField3)
+                            .addComponent(pus)
                             .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField4)
+                            .addComponent(ped)
                             .addComponent(jLabel21)
-                            .addComponent(jTextField5, javax.swing.GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE)))
+                            .addComponent(pcon, javax.swing.GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE)))
                     .addGroup(PersonalLayout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(jButton5)
@@ -294,19 +301,19 @@ public class Inicion extends javax.swing.JFrame {
                         .addGap(20, 20, 20)
                         .addComponent(jLabel18)
                         .addGap(4, 4, 4)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(pnom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel19)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(pus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel20)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(ped, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel21)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(pcon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(24, Short.MAX_VALUE))
         );
 
@@ -487,6 +494,7 @@ public class Inicion extends javax.swing.JFrame {
         );
 
         Cliente.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        Cliente.setMinimumSize(new java.awt.Dimension(600, 450));
 
         clientem.setColumns(20);
         clientem.setRows(5);
@@ -728,8 +736,11 @@ public class Inicion extends javax.swing.JFrame {
                     Admin.setVisible(true);
                 } else if (rs.getString(2).equals(user) && rs.getString(3).equals(contr) && rs.getString(6).equals("Personal")) {
                     Personal.setVisible(true);
+                    us2=new usuarios(rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5), rs.getString(6));
                 } else if (rs.getString(2).equals(user) && rs.getString(3).equals(contr) && rs.getString(6).equals("Cliente")) {
                     Cliente.setVisible(true);
+                    pos++;
+                   us1=new usuarios(rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5), rs.getString(6));
                 }
             }
         } catch (SQLException ex) {
@@ -826,12 +837,16 @@ public class Inicion extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        // TODO add your handling code here:
+    
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void PersonalComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_PersonalComponentShown
-        show();
+        
     }//GEN-LAST:event_PersonalComponentShown
+
+    private void pedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pedActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_pedActionPerformed
 
     /**
      * @param args the command line arguments
@@ -922,20 +937,24 @@ public class Inicion extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JCheckBox ojito;
     private javax.swing.JCheckBox ojito1;
+    private javax.swing.JTextField pcon;
+    private javax.swing.JTextField ped;
     private javax.swing.JTextArea perm;
+    private javax.swing.JTextField pnom;
+    private javax.swing.JTextField pus;
     private javax.swing.JPasswordField rcontra;
     private javax.swing.JSpinner redad;
     private javax.swing.JTextField rnombre;
     private javax.swing.JTextField rusuario;
     private javax.swing.JTable tabla;
     // End of variables declaration//GEN-END:variables
+    usuarios us1;
+    usuarios us2;
+    int pos=0;
+   ArrayList<usuarios> us3 = new ArrayList();
     public void table() {
         conexion db = new conexion("./Usuarios.accdb");
         db.conectar();
