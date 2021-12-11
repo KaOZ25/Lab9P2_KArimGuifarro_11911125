@@ -766,7 +766,24 @@ public class Inicion extends javax.swing.JFrame {
     }//GEN-LAST:event_tablaMouseClicked
 
     private void adguarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_adguarMouseClicked
-
+         String usuario = adus.getText(), nombre = adnom.getText(), contraseña = adcon.getText(), tipo = adtip.getSelectedItem().toString();
+        int edad = (int) aded.getValue();
+        if (usuario.isEmpty() && nombre.isEmpty() && contraseña.isEmpty() || contraseña.equals("holamundo")) {
+            JOptionPane.showMessageDialog(null, "Favor rellenar todos los datos");
+        } else if (!usuario.isEmpty() && !nombre.isEmpty() && !contraseña.isEmpty()) {
+            conexion db = new conexion("./Usuarios.accdb");
+            db.conectar();
+            try {
+                db.query.execute("INSERT INTO Table1 "
+                        + " (Usuario,Contraseña,Nombre,Edad,Tipo)"
+                        + "Values ('" + usuario + "','" + contraseña + "','" + nombre + "','" + edad + "','" + tipo + "')");
+                db.commit();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+            JOptionPane.showMessageDialog(null, "Usuario Agregado exitosamente");
+            db.desconectar();
+        }
     }//GEN-LAST:event_adguarMouseClicked
 
     private void editarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editarMouseClicked
